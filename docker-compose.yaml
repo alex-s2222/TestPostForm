@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-    # backend: 
-    #   build: backend/
-    #   container_name: backend 
+    backend: 
+      build: backend/
+      container_name: backend 
 
-    #   command: python app.py
+      command: python app.py
       
-    #   ports:
-    #     - 8080:8080
+      ports:
+        - 8080:8080
 
-    #   depends_on:
-    #     - mongodb
+      depends_on:
+        - mongodb
       
 
     mongodb:
