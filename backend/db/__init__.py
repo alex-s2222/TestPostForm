@@ -11,7 +11,8 @@ class DataBase:
     def __init__(self) -> None:
         """получаем курсор к базе данных"""
         # получаем ссылку для поключения
-        url = self.__get_url()
+        # url = self.__get_url()
+        url = 'mongodb://localhost:27017'
 
         client = MongoClient(url)
         db = client.form_templates
