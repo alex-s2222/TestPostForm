@@ -30,6 +30,34 @@ class DataBase:
             self.conn.insert_many(data)
 
 
+    def find_matching_template(self, data) -> str | None:
+        """поиск нужной формы"""
+        cursor = self.conn.find()
+
+        for document in cursor:
+            #получаем ключи формы и удаляем ненужные
+            template_fields = set(document.keys()) - {'name'} - {'_id'} 
+            print("TEMPLATE",template_fields)
+            
+            data_fields = set(data.keys())
+            print("DATA",data_fields)
+
+            #проверяем на одинаковые ключи
+            if data_fields.issuperset(template_fields):
+                print("GOGOGO")
+                # проверяем на одинаковое значение
+                valid = all(self.__check_value(document[field], data[field]) for field in template_fields)
+                if valid:
+                    return document['name']
+        return None
+        
+
+    def __check_value(self, template, data) -> bool:
+        if template == data:
+            return True
+        
+
+
     def __get_url(self) -> str:
             """создаем ссылку для подключения"""
             host = os.environ['HOST']
