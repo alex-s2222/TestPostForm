@@ -4,6 +4,7 @@ import json
 
 from db import DataBase
 from validate import get_type_data
+from templates import find_matching_template
 
 
 app = Flask(__name__)
@@ -26,10 +27,10 @@ def get_form():
     for key, value in user_data.items():
         type_value = get_type_data(value)
         transform_data.update({key:type_value})
+    
+    cursor  = db.get_cursor()
+    template_name = find_matching_template(cursor, transform_data)
 
-    
-    
-    template_name = db.find_matching_template(transform_data)
     if template_name:
         return {'name': template_name}
     else:
