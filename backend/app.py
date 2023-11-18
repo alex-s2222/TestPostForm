@@ -13,7 +13,7 @@ db.init_db()
 
 @app.route('/get_form', methods=['POST'])
 def get_form():
-    user_data = dict(request.args)
+    user_data = dict(request.form)
     transform_data = dict()
 
     for key, value in user_data.items():
