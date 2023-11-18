@@ -1,6 +1,4 @@
-from flask import Flask, request, jsonify
-from bson import json_util
-import json
+from flask import Flask, request
 
 from db import DataBase
 from validate import get_type_data
@@ -11,12 +9,6 @@ app = Flask(__name__)
 
 db = DataBase()
 db.init_db()
-
-
-@app.route('/', methods=['GET'])
-def get_data():
-    data = db.get_data()
-    return data
 
 
 @app.route('/get_form', methods=['POST'])

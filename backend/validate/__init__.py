@@ -1,5 +1,6 @@
 import re
 
+
 def get_type_data(value: str) -> str:
     if validate_date(value):
         return 'date'
@@ -18,7 +19,7 @@ def validate_date(data: str) -> bool:
 
 
 def validate_phone(data: str) -> bool:
-    regular = '(\ +7)?[\s]?\(?[0-9]{3}\)?[\s]?[0-9]{3}[\s]?[0-9]{2}[\s]?[0-9]{2}$'
+    regular = '(\+?7)?[\s]?\(?[0-9]{3}\)?[\s]?[0-9]{3}[\s]?[0-9]{2}[\s]?[0-9]{2}$'
     return bool(re.match(regular, data))
 
 

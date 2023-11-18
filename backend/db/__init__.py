@@ -1,9 +1,6 @@
 from pymongo import MongoClient
 import os
 
-from bson import json_util
-import json
-
 from db.inition import data
 
 
@@ -16,11 +13,6 @@ class DataBase:
         client = MongoClient(url)
         db = client.form_templates
         self.conn = db.templates
-
-
-    def get_data(self):
-        data = self.conn.find_one({'name':'OrderForm'})
-        return self.__bson_to_json(data)
 
 
     def init_db(self):
@@ -43,7 +35,3 @@ class DataBase:
 
             return 'mongodb://' + user + ':' + password +\
                 '@' + host + ':' + port
-        
-    
-    def __bson_to_json(self, data) -> json:
-        return json.loads(json_util.dumps(data))
